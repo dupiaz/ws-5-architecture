@@ -1,0 +1,6 @@
+# plugin.toml — Metadata for AI-Box API translator plugin
+
+name = "aibox"
+version = "1.0.0"
+description = "Dịch phụ đề song song qua AI-Box API (DeepSeek V4 Flash)"
+author = "duc1408"

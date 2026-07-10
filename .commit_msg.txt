@@ -1,4 +1,0 @@
-Khởi tạo dự án và cập nhật tài liệu thiết kế kiến trúc
-
-- Bổ sung tài liệu mô tả kiến trúc v1.0
-- Tối ưu hóa kiến trúc ứng dụng desktop v2.0

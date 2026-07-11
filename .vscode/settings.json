@@ -1,0 +1,6 @@
+{
+    // Thiết lập Trình thông dịch (Interpreter) Python mặc định cho TOÀN BỘ Workspace này.
+    // Việc khai báo này giúp VS Code (và các tiện ích như Pylance, Linter) biết kho thư viện (.venv) nằm ở đâu
+    // để không bị gạch chân đỏ báo lỗi ảo (ModuleNotFoundError) và bật tính năng gợi ý code chuẩn xác.
+    "python.defaultInterpreterPath": "${workspaceFolder}/repos/srt-translator-refactored/.venv/Scripts/python.exe"
+}

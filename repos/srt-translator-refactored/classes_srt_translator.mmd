@@ -1,0 +1,103 @@
+classDiagram
+  class AIBoxAdapter {
+    PLUGIN_NAME : str
+    api_key : str
+    plugin_name : str
+    translate_batch(blocks: List[SrtBlock], target_lang: str, content_type: str, glossary: Dict[str, str], model: str) Dict[int, str]
+  }
+  class AutoUpdater {
+    check_for_updates_async() None
+    start_download_async(download_url: str) None
+  }
+  class EventBus {
+    emit(event_type: str) None
+    subscribe(event_type: str, callback: Callable) None
+    unsubscribe(event_type: str, callback: Callable) None
+  }
+  class FileListFrame {
+    canvas : Canvas
+    container : Frame
+    drop_frame : Frame
+    files : List[Dict[str, Any]], list
+    progress_bar : Progressbar
+    progress_frame : Frame
+    progress_lbl : Label
+    progress_var : DoubleVar
+    tree : Treeview
+    tree_frame : Frame
+  }
+  class GlobalStore {
+    event_bus
+    get(key: str, default: Any) Any
+    log(message: str, level: str) None
+    set(key: str, value: Any, emit_change: bool) None
+  }
+  class LogPanelFrame {
+    clear_btn : Button
+    log_txt : Text
+    append_log(msg: str, level: str) None
+    clear_log() None
+  }
+  class MainWindow {
+    file_list : FileListFrame
+    log_panel : LogPanelFrame
+    orchestrator : PipelineOrchestrator
+    sidebar : SidebarFrame
+    updater : AutoUpdater
+  }
+  class PipelineOrchestrator {
+    worker_factory : Callable[[str, Dict[str, Any], Dict[int, str]], Any]
+    start(selected_files: List[Dict[str, Any]], settings: Dict[str, Any]) None
+  }
+  class PluginRegistry {
+    discover_plugins() None
+    get_available_plugins() Dict[str, PluginMetadata]
+    get_plugin_class(plugin_id: str) Optional[Type[TranslationEngine]]
+  }
+  class SidebarFrame {
+    api_keys_txt : Text
+    batch_lbl : Label
+    batch_scale : Scale
+    batch_var : IntVar
+    ctype_combo : Combobox
+    ctype_var : StringVar
+    glossary_txt : Text
+    key_count_lbl : Label
+    lang_combo : Combobox
+    lang_var : StringVar
+    model_combo : Combobox
+    model_var : StringVar
+    on_start : Callable[[], None]
+    on_stop : Callable[[], None]
+    save_btn : Button
+    start_btn : Button
+    stop_btn : Button
+    get_settings() Dict[str, Any]
+    set_running_state(is_running: bool) None
+  }
+  class StepEngine {
+    plugin_name : str
+  }
+  class TranslationEngine {
+    translate_batch(blocks: List[SrtBlock], target_lang: str, content_type: str, glossary: Dict[str, str], model: str)* Dict[int, str]
+  }
+  class TranslationResult {
+    target_lang : str
+    translated_text_map : Dict[int, str]
+  }
+  class TranslationWorker {
+    api_keys
+    batch_size
+    checkpoint_map : Dict[int, str]
+    content_type
+    filepath : str
+    glossary
+    model
+    plugin_name
+    settings : Dict[str, Any]
+    source_patterns : list
+    target_lang
+    execute(blocks: List[SrtBlock], chunk_completed_cb: Callable[[Dict[int, str]], None]) List[SrtBlock]
+  }
+  TranslationEngine --|> StepEngine
+  EventBus --* GlobalStore : event_bus

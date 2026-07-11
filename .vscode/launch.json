@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // ── [1] CẤU HÌNH CHO DỰ ÁN MỚI (REFACTORED) ───────────────────────────
+        {
+            "name": "srt-translator-refactored", // Tên hiển thị trên menu thả xuống của VS Code
+            "type": "debugpy", // Trình gỡ lỗi (debugger) tiêu chuẩn của Python hiện nay
+            "request": "launch", // Yêu cầu VS Code khởi chạy (launch) một tiến trình mới
+            "program": "${workspaceFolder}/repos/srt-translator-refactored/app/main.py", // Đường dẫn đến file entry point (file chạy chính)
+            "console": "integratedTerminal", // Cho phép hiển thị kết quả và log ra Terminal tích hợp của VS Code
+            "justMyCode": true, // Quan trọng: Chỉ dừng lỗi ở code CỦA BẠN, bỏ qua code sâu bên trong các thư viện tải từ pip
+            "cwd": "${workspaceFolder}/repos/srt-translator-refactored" // Thiết lập thư mục gốc (Current Working Directory) khi chạy
+            // Lưu ý: Cấu hình này không có thuộc tính "python" vì nó sẽ tự động dùng môi trường mặc định khai báo trong settings.json
+        },
+        
+        // ── [2] CẤU HÌNH CHO DỰ ÁN CŨ (SRT-TRANSLATOR) ─────────────────────────
+        {
+            "name": "SRT-Translator",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/repos/SRT-Translator/app.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/repos/SRT-Translator",
+            "python": "${workspaceFolder}/repos/SRT-Translator/.venv/Scripts/python.exe" // Ghi đè (Override): Bắt buộc dùng môi trường ảo riêng của dự án này
+        }
+
+        // ── [3] TEMPLATE MẪU DÀNH CHO HỌC VIÊN ─────────────────────────────────
+        // HƯỚNG DẪN: Nếu bạn làm thêm dự án mới, hãy bôi đen đoạn nằm giữa /* và */ dưới đây, 
+        // copy nó lên phía trên, bỏ dấu /* */ đi và thay các chữ <VIẾT_HOA> thành thông tin thực tế.
+        /*
+        ,{
+            "name": "<ĐIỀN_TÊN_THƯ_MỤC_DỰ_ÁN_CỦA_BẠN>",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/repos/<ĐIỀN_TÊN_THƯ_MỤC>/<TÊN_FILE_CHẠY_CHÍNH>.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/repos/<ĐIỀN_TÊN_THƯ_MỤC>",
+            "python": "${workspaceFolder}/repos/<ĐIỀN_TÊN_THƯ_MỤC>/.venv/Scripts/python.exe"
+        }
+        */
+    ]
+}
